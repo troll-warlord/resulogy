@@ -1,0 +1,332 @@
+.theme-editorial {
+  width: var(--resume-page-width);
+  min-height: var(--resume-page-min-height);
+  overflow-wrap: anywhere;
+  background: #fff;
+  box-shadow: 0 18px 55px rgb(25 38 33 / 12%);
+  color: var(--resume-color-text);
+  font-family: var(--resume-font-family);
+  font-size: var(--resume-base-size);
+  line-height: var(--resume-line-height);
+  padding: var(--resume-page-margin);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.theme-editorial a {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, var(--resume-color-accent), transparent 45%);
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.13em;
+}
+
+.theme-editorial .resume-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(235px, auto);
+  align-items: end;
+  gap: calc(18px * var(--resume-density));
+  border-bottom: 1.5px solid var(--resume-color-accent);
+  padding-bottom: calc(13px * var(--resume-density));
+}
+
+.theme-editorial .resume-header__identity h1 {
+  margin: 0;
+  color: var(--resume-color-text);
+  font-size: 2.45em;
+  font-weight: 730;
+  line-height: 1;
+}
+
+.theme-editorial .resume-header__identity p {
+  margin: 7px 0 0;
+  color: var(--resume-color-accent);
+  font-size: 1.08em;
+  font-weight: 650;
+}
+
+.theme-editorial .resume-contact-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, auto));
+  justify-content: end;
+  gap: 5px 14px;
+  margin: 0;
+  color: var(--resume-color-muted);
+  font-size: 0.83em;
+  font-style: normal;
+}
+
+.theme-editorial .resume-contact {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.theme-editorial .resume-contact svg {
+  flex: 0 0 auto;
+  color: var(--resume-color-accent);
+}
+
+.theme-editorial .resume-contact span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-editorial .resume-section {
+  margin-top: calc(18px * var(--resume-density));
+}
+
+.theme-editorial .resume-section__title {
+  margin: 0 0 calc(8px * var(--resume-density));
+  border-bottom: 1px solid var(--resume-color-rule);
+  break-after: avoid-page;
+  color: var(--resume-color-accent);
+  font-size: 1.05em;
+  font-weight: 750;
+  line-height: 1.25;
+  padding-bottom: 4px;
+}
+
+.theme-editorial .resume-section__title + * {
+  break-before: avoid-page;
+}
+
+.theme-editorial .resume-copy {
+  max-width: none;
+  margin: 0;
+}
+
+.theme-editorial .resume-copy + .resume-list {
+  margin-top: calc(6px * var(--resume-density));
+}
+
+.theme-editorial .resume-list {
+  display: grid;
+  gap: calc(3px * var(--resume-density));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.theme-editorial .resume-list li {
+  position: relative;
+  padding-left: 1.05em;
+}
+
+.theme-editorial .resume-list li::before {
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  display: block;
+  width: 0.34em;
+  height: 0.34em;
+  background: currentColor;
+  color: var(--resume-color-accent);
+  content: '';
+  transform: translateY(-50%);
+}
+
+.theme-editorial .resume-list[data-bullet-marker='disc'] li::before,
+.theme-editorial .resume-list[data-bullet-marker='circle'] li::before {
+  border-radius: 50%;
+}
+
+.theme-editorial .resume-list[data-bullet-marker='circle'] li::before {
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.theme-editorial .resume-list[data-bullet-marker='square'] li::before {
+  width: 0.31em;
+  height: 0.31em;
+}
+
+.theme-editorial .resume-list[data-bullet-marker='dash'] li::before {
+  width: 0.48em;
+  height: 0.1em;
+}
+
+.theme-editorial .resume-list[data-bullet-marker='chevron'] li::before {
+  width: 0.32em;
+  height: 0.32em;
+  border-right: 0.09em solid currentColor;
+  border-bottom: 0.09em solid currentColor;
+  background: transparent;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.theme-editorial .resume-list[data-bullet-marker='none'] li {
+  padding-left: 0;
+}
+
+.theme-editorial .resume-list[data-bullet-marker='none'] li::before {
+  display: none;
+}
+
+.theme-editorial .resume-entries {
+  display: grid;
+  gap: calc(13px * var(--resume-density));
+}
+
+.theme-editorial .resume-entry {
+  break-inside: avoid;
+}
+
+.theme-editorial .resume-entry__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  margin-bottom: calc(4px * var(--resume-density));
+}
+
+.theme-editorial .resume-entry__header h3 {
+  margin: 0;
+  font-size: 1.02em;
+  font-weight: 720;
+  line-height: 1.25;
+}
+
+.theme-editorial .resume-entry__header h3 a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--resume-color-text);
+  font-weight: inherit;
+}
+
+.theme-editorial .resume-entry__details {
+  margin: 2px 0 0;
+  color: var(--resume-color-muted);
+  font-size: 0.93em;
+}
+
+.theme-editorial .resume-entry__details span + span::before {
+  margin: 0 0.38em;
+  color: var(--resume-color-rule);
+  content: '|';
+}
+
+.theme-editorial .resume-date {
+  color: var(--resume-color-muted);
+  font-size: 0.88em;
+  font-weight: 580;
+  white-space: nowrap;
+}
+
+.theme-editorial .resume-entry .resume-list {
+  margin-top: calc(5px * var(--resume-density));
+}
+
+.theme-editorial .resume-entries[data-layout='compact'] {
+  gap: calc(9px * var(--resume-density));
+}
+
+.theme-editorial .resume-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 9px;
+  margin: calc(5px * var(--resume-density)) 0 0;
+  padding: 0;
+  color: var(--resume-color-muted);
+  font-size: 0.83em;
+  list-style: none;
+}
+
+.theme-editorial .resume-keywords li + li::before {
+  margin-right: 9px;
+  color: var(--resume-color-rule);
+  content: '/';
+}
+
+.theme-editorial .resume-groups {
+  display: grid;
+  grid-template-columns: repeat(var(--section-columns, 2), minmax(0, 1fr));
+  gap: calc(7px * var(--resume-density)) calc(22px * var(--resume-density));
+  margin: 0;
+}
+
+.theme-editorial .resume-groups[data-layout='stacked'] {
+  grid-template-columns: 1fr;
+}
+
+.theme-editorial .resume-group {
+  display: grid;
+  grid-template-columns: minmax(76px, 0.3fr) minmax(0, 1fr);
+  gap: 8px;
+  break-inside: avoid;
+}
+
+.theme-editorial .resume-group dt {
+  font-weight: 720;
+}
+
+.theme-editorial .resume-group dd {
+  margin: 0;
+}
+
+.theme-editorial .resume-group--compact {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.theme-editorial .resume-muted,
+.theme-editorial .resume-group--compact dd {
+  color: var(--resume-color-muted);
+}
+
+.theme-editorial .resume-section[data-break='avoid'] {
+  break-inside: avoid;
+}
+
+.theme-editorial .resume-section[data-break='before'] {
+  break-before: page;
+}
+
+.theme-editorial .resume-section[data-break='after'] {
+  break-after: page;
+}
+
+.theme-editorial p,
+.theme-editorial li {
+  orphans: 3;
+  widows: 3;
+}
+
+@media screen and (max-width: 850px) {
+  .theme-editorial {
+    width: calc(100vw - 16px);
+    min-height: 0;
+    padding: clamp(22px, 6vw, 40px);
+  }
+
+  .theme-editorial .resume-header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .theme-editorial .resume-contact-list {
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .theme-editorial .resume-header__identity h1 {
+    font-size: 2em;
+  }
+
+  .theme-editorial .resume-contact-list {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-editorial .resume-entry__header {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .theme-editorial .resume-groups {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,9 @@
+:root {
+  --resume-page-width: 210mm;
+  --resume-page-min-height: 297mm;
+}
+
+.resume-document[data-page-size='letter'] {
+  --resume-page-width: 215.9mm;
+  --resume-page-min-height: 279.4mm;
+}

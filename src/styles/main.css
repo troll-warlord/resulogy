@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+@import './tokens.css';
+@import './print.css';
+
+@theme {
+  --font-ui: 'Source Sans 3 Variable', 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  :root {
+    color: #202624;
+    background: #e9ecea;
+    font-family: var(--font-ui);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-width: 320px;
+    background: #e9ecea;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100dvh;
+    margin: 0;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .app-shell {
+    min-height: 100dvh;
+    background: #e9ecea;
+  }
+
+  .app-toolbar {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+    display: flex;
+    min-height: 68px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid #d4d9d6;
+    background: rgb(248 249 248 / 94%);
+    padding: 10px 24px;
+    backdrop-filter: blur(12px);
+  }
+
+  .app-toolbar__identity,
+  .app-toolbar__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .app-toolbar__identity {
+    gap: 12px;
+  }
+
+  .app-toolbar__identity > span {
+    width: 1px;
+    height: 20px;
+    background: #ced4d0;
+  }
+
+  .app-wordmark {
+    color: #183c36;
+    font-size: 17px;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .app-toolbar__identity p,
+  .app-document-meta {
+    margin: 0;
+    color: #66706c;
+    font-size: 13px;
+  }
+
+  .app-toolbar__actions {
+    gap: 18px;
+  }
+
+  .app-document-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .preview-stage {
+    display: flex;
+    justify-content: center;
+    padding: 36px 20px 72px;
+  }
+
+  @media (max-width: 640px) {
+    .app-toolbar {
+      min-height: 62px;
+      padding: 8px 12px;
+    }
+
+    .app-toolbar__identity p,
+    .app-document-meta,
+    .app-toolbar__identity > span {
+      display: none;
+    }
+
+    .preview-stage {
+      padding: 12px 8px 36px;
+    }
+  }
+}

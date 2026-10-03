@@ -1,0 +1,171 @@
+# yaml-language-server: $schema=./resume.schema.json
+$schema: ./resume.schema.json
+version: 1
+
+basics:
+  name: Alex Johnson
+  label: Senior Full-Stack Engineer
+  email: alex.johnson@example.com
+  phone: '+1 (555) 123-4567'
+  location:
+    city: San Francisco
+    region: CA
+    country: USA
+  website: https://alexjohnson.dev
+  social:
+    - network: LinkedIn
+      username: alexjohnson
+      url: https://linkedin.com/in/alexjohnson
+    - network: GitHub
+      username: alexjohnson
+      url: https://github.com/alexjohnson
+    - network: Credly
+      username: alexjohnson
+      url: https://www.credly.com/users/alexjohnson
+
+presentation:
+  theme: ledger
+
+sections:
+  - type: summary
+    title: Profile
+    text: >
+      Product-minded engineer with 8+ years building reliable web applications,
+      design systems, and developer platforms.
+    highlights:
+      - Turns ambiguous product goals into pragmatic technical plans.
+      - Builds resilient systems without losing sight of the people using them.
+
+  - type: experience
+    title: Experience
+    items:
+      - company: Northstar Labs
+        position: Senior Full-Stack Engineer
+        location: San Francisco, CA
+        start: 2021-03
+        end: present
+        summary: Leads platform work across product, design, and infrastructure teams.
+        highlights:
+          - Redesigned a fragile release process into a shared delivery platform that reduced lead time by 45% while preserving team ownership, auditability, and safe rollback paths across four product groups.
+          - Mentored six engineers through architecture reviews, pairing sessions, and written decision records that helped each team make clearer technical choices without depending on a central approval group.
+        keywords:
+          - TypeScript
+          - Vue
+          - Node.js
+          - PostgreSQL
+
+      - company: Meridian Software
+        position: Full-Stack Engineer
+        location: Oakland, CA
+        start: 2017-06
+        end: 2021-02
+        highlights:
+          - Built accessible customer onboarding and account-management workflows used by more than 40,000 monthly users across desktop and mobile browsers.
+          - Improved core page performance while incrementally migrating a legacy frontend, keeping high-traffic customer journeys available throughout the transition.
+
+  - type: projects
+    title: Selected Projects
+    layout: compact
+    items:
+      - name: Relay
+        role: Creator and maintainer
+        url: https://github.com/alexjohnson/relay
+        start: 2023-08
+        summary: Open-source release orchestration for small engineering teams.
+        highlights:
+          - Designed a stable plugin API and contributor workflow that lets maintainers add deployment providers without coupling extensions to the release engine internals.
+        technologies:
+          - TypeScript
+          - SQLite
+          - GitHub Actions
+
+  - type: skills
+    layout: grid
+    columns: 2
+    items:
+      - name: Languages
+        items: [TypeScript, JavaScript, SQL, Go]
+      - name: Frontend
+        items: [Vue, React, Vite, Accessibility]
+      - name: Backend
+        items: [Node.js, PostgreSQL, Redis, REST]
+      - name: Practice
+        items: [System design, Mentoring, Product discovery]
+
+  - type: education
+    layout: compact
+    items:
+      - institution: University of California, Berkeley
+        studyType: Bachelor of Science
+        area: Computer Science
+        location: Berkeley, CA
+        start: 2013-08
+        end: 2017-05
+        honors:
+          - Dean's List
+
+  - type: certifications
+    layout: compact
+    items:
+      - name: AWS Certified Solutions Architect - Associate
+        issuer: Amazon Web Services
+        date: 2024-04
+        expires: 2027-04
+        credentialId: AWS-123456
+
+  - type: awards
+    title: Recognition
+    layout: compact
+    items:
+      - title: Engineering Impact Award
+        awarder: Northstar Labs
+        date: 2023-12
+        summary: Recognized for improving the reliability of the shared release platform.
+
+  - type: volunteering
+    layout: compact
+    items:
+      - organization: CodeForward
+        position: Volunteer Mentor
+        start: 2020-01
+        end: present
+        highlights:
+          - Coaches early-career developers through multi-week portfolio projects, code reviews, and interview practice focused on explaining tradeoffs rather than memorizing ideal answers.
+
+  - type: publications
+    layout: compact
+    items:
+      - name: Designing Release Systems for Product Teams
+        publisher: Practical Engineering Review
+        date: 2024-09
+        url: https://alexjohnson.dev/writing/release-systems
+        authors:
+          - Alex Johnson
+        summary: A field guide to delivery tooling that supports autonomy without hiding risk.
+
+  - type: languages
+    layout: inline
+    columns: 2
+    items:
+      - name: English
+        fluency: Native
+      - name: Spanish
+        fluency: Professional working proficiency
+
+  - type: interests
+    layout: inline
+    columns: 2
+    items:
+      - name: Community radio
+        keywords: [Audio production, Archiving]
+      - name: Distance running
+        keywords: [Trail, Half marathon]
+
+  - type: custom
+    title: Speaking
+    layout: compact
+    items:
+      - heading: Platforms That Teams Can Trust
+        subheading: Bay Area Web Engineering
+        meta: '2024'
+        text: Talk on product-minded platform engineering and progressive delivery.

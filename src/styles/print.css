@@ -1,0 +1,84 @@
+@page resume-a4-compact {
+  size: A4 portrait;
+  margin: 11mm;
+}
+
+@page resume-a4-standard {
+  size: A4 portrait;
+  margin: 15mm;
+}
+
+@page resume-a4-spacious {
+  size: A4 portrait;
+  margin: 19mm;
+}
+
+@page resume-letter-compact {
+  size: Letter portrait;
+  margin: 0.43in;
+}
+
+@page resume-letter-standard {
+  size: Letter portrait;
+  margin: 0.59in;
+}
+
+@page resume-letter-spacious {
+  size: Letter portrait;
+  margin: 0.75in;
+}
+
+.resume-document[data-page-size='a4'][data-page-margin='compact'] {
+  page: resume-a4-compact;
+}
+
+.resume-document[data-page-size='a4'][data-page-margin='standard'] {
+  page: resume-a4-standard;
+}
+
+.resume-document[data-page-size='a4'][data-page-margin='spacious'] {
+  page: resume-a4-spacious;
+}
+
+.resume-document[data-page-size='letter'][data-page-margin='compact'] {
+  page: resume-letter-compact;
+}
+
+.resume-document[data-page-size='letter'][data-page-margin='standard'] {
+  page: resume-letter-standard;
+}
+
+.resume-document[data-page-size='letter'][data-page-margin='spacious'] {
+  page: resume-letter-spacious;
+}
+
+@media print {
+  :root,
+  html,
+  body,
+  #app {
+    min-width: 0;
+    min-height: 0;
+    background: #fff;
+  }
+
+  .screen-only {
+    display: none !important;
+  }
+
+  .app-shell,
+  .preview-stage {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .resume-document {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}

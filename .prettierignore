@@ -1,0 +1,14 @@
+.agent/
+.agents/
+.playwright/
+.playwright-cli/
+dist/
+dist-ssr/
+coverage/
+artifacts/
+node_modules/
+package-lock.json
+playwright-report/
+pdf/
+reports/
+test-results/

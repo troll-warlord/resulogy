@@ -1,0 +1,462 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "number", "const": 1 },
+    "basics": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "#/$defs/__schema0" },
+        "label": { "$ref": "#/$defs/__schema0" },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+        },
+        "phone": { "$ref": "#/$defs/__schema0" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "city": { "$ref": "#/$defs/__schema0" },
+            "region": { "$ref": "#/$defs/__schema0" },
+            "country": { "$ref": "#/$defs/__schema0" },
+            "postalCode": { "$ref": "#/$defs/__schema0" }
+          },
+          "additionalProperties": false
+        },
+        "website": { "$ref": "#/$defs/__schema1" },
+        "social": { "maxItems": 20, "type": "array", "items": { "$ref": "#/$defs/__schema2" } }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "theme": { "type": "string", "enum": ["editorial", "ledger"] },
+        "page": {
+          "type": "object",
+          "properties": {
+            "size": { "type": "string", "enum": ["a4", "letter"] },
+            "margin": { "type": "string", "enum": ["compact", "standard", "spacious"] }
+          },
+          "additionalProperties": false
+        },
+        "typography": {
+          "type": "object",
+          "properties": {
+            "fontFamily": {
+              "type": "string",
+              "enum": ["source-sans-3", "source-serif-4", "ibm-plex-sans"]
+            },
+            "baseSize": { "type": "number", "minimum": 8, "maximum": 14 },
+            "lineHeight": { "type": "number", "minimum": 1.15, "maximum": 1.7 }
+          },
+          "additionalProperties": false
+        },
+        "colors": {
+          "type": "object",
+          "properties": {
+            "text": { "$ref": "#/$defs/__schema3" },
+            "muted": { "$ref": "#/$defs/__schema3" },
+            "accent": { "$ref": "#/$defs/__schema3" },
+            "rule": { "$ref": "#/$defs/__schema3" }
+          },
+          "additionalProperties": false
+        },
+        "density": { "type": "string", "enum": ["compact", "standard", "spacious"] },
+        "bullets": {
+          "type": "object",
+          "properties": { "marker": { "$ref": "#/$defs/__schema4" } },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "sections": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema5" } }
+  },
+  "required": ["version", "basics", "sections"],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "\\S" },
+    "__schema1": { "type": "string", "format": "uri" },
+    "__schema2": {
+      "type": "object",
+      "properties": {
+        "network": { "$ref": "#/$defs/__schema0" },
+        "username": { "$ref": "#/$defs/__schema0" },
+        "url": { "$ref": "#/$defs/__schema1" }
+      },
+      "required": ["network", "url"],
+      "additionalProperties": false
+    },
+    "__schema3": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "__schema4": {
+      "type": "string",
+      "enum": ["disc", "circle", "square", "dash", "chevron", "none"]
+    },
+    "__schema5": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": { "$ref": "#/$defs/__schema6" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "text": { "$ref": "#/$defs/__schema11" },
+            "highlights": { "$ref": "#/$defs/__schema13" }
+          },
+          "required": ["type"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "experience" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["stacked", "timeline"] },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema14" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "projects" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["stacked", "compact"] },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema18" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "education" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["stacked", "compact"] },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema19" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "skills" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["inline", "grid", "stacked"] },
+            "columns": { "type": "integer", "minimum": 1, "maximum": 3 },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema20" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "certifications" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["stacked", "compact"] },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema21" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "awards" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["stacked", "compact"] },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema22" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "volunteering" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["stacked", "compact"] },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema23" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "publications" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["stacked", "compact"] },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema24" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "languages" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["inline", "grid", "stacked"] },
+            "columns": { "type": "integer", "minimum": 1, "maximum": 3 },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema25" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "interests" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "type": "string", "enum": ["inline", "grid", "stacked"] },
+            "columns": { "type": "integer", "minimum": 1, "maximum": 3 },
+            "items": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema26" } }
+          },
+          "required": ["type", "items"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "$ref": "#/$defs/__schema27" },
+            "id": { "$ref": "#/$defs/__schema7" },
+            "title": { "$ref": "#/$defs/__schema8" },
+            "visible": { "$ref": "#/$defs/__schema9" },
+            "options": { "$ref": "#/$defs/__schema10" },
+            "layout": { "$ref": "#/$defs/__schema28" },
+            "body": { "$ref": "#/$defs/__schema29" },
+            "items": { "$ref": "#/$defs/__schema30" }
+          },
+          "required": ["type"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "__schema6": { "type": "string", "const": "summary" },
+    "__schema7": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "__schema8": { "$ref": "#/$defs/__schema0" },
+    "__schema9": { "type": "boolean" },
+    "__schema10": {
+      "type": "object",
+      "properties": {
+        "breakPolicy": { "type": "string", "enum": ["auto", "avoid", "before", "after"] },
+        "bulletMarker": { "$ref": "#/$defs/__schema4" }
+      },
+      "additionalProperties": false
+    },
+    "__schema11": { "$ref": "#/$defs/__schema12" },
+    "__schema12": { "type": "string", "minLength": 1, "maxLength": 2000, "pattern": "\\S" },
+    "__schema13": { "maxItems": 30, "type": "array", "items": { "$ref": "#/$defs/__schema12" } },
+    "__schema14": {
+      "type": "object",
+      "properties": {
+        "company": { "$ref": "#/$defs/__schema0" },
+        "position": { "$ref": "#/$defs/__schema0" },
+        "location": { "$ref": "#/$defs/__schema0" },
+        "url": { "$ref": "#/$defs/__schema1" },
+        "start": { "$ref": "#/$defs/__schema15" },
+        "end": { "$ref": "#/$defs/__schema16" },
+        "summary": { "$ref": "#/$defs/__schema12" },
+        "highlights": { "$ref": "#/$defs/__schema13" },
+        "keywords": { "maxItems": 30, "type": "array", "items": { "$ref": "#/$defs/__schema0" } }
+      },
+      "required": ["company", "position", "start"],
+      "additionalProperties": false
+    },
+    "__schema15": { "type": "string", "pattern": "^\\d{4}-(0[1-9]|1[0-2])$" },
+    "__schema16": { "$ref": "#/$defs/__schema17" },
+    "__schema17": {
+      "anyOf": [{ "$ref": "#/$defs/__schema15" }, { "type": "string", "const": "present" }]
+    },
+    "__schema18": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "#/$defs/__schema0" },
+        "role": { "$ref": "#/$defs/__schema0" },
+        "url": { "$ref": "#/$defs/__schema1" },
+        "repository": { "$ref": "#/$defs/__schema1" },
+        "start": { "$ref": "#/$defs/__schema15" },
+        "end": { "$ref": "#/$defs/__schema17" },
+        "summary": { "$ref": "#/$defs/__schema12" },
+        "highlights": { "$ref": "#/$defs/__schema13" },
+        "technologies": {
+          "maxItems": 30,
+          "type": "array",
+          "items": { "$ref": "#/$defs/__schema0" }
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "__schema19": {
+      "type": "object",
+      "properties": {
+        "institution": { "$ref": "#/$defs/__schema0" },
+        "studyType": { "$ref": "#/$defs/__schema0" },
+        "area": { "$ref": "#/$defs/__schema0" },
+        "location": { "$ref": "#/$defs/__schema0" },
+        "url": { "$ref": "#/$defs/__schema1" },
+        "start": { "$ref": "#/$defs/__schema15" },
+        "end": { "$ref": "#/$defs/__schema16" },
+        "score": { "$ref": "#/$defs/__schema0" },
+        "honors": { "maxItems": 20, "type": "array", "items": { "$ref": "#/$defs/__schema0" } },
+        "courses": { "maxItems": 30, "type": "array", "items": { "$ref": "#/$defs/__schema0" } },
+        "highlights": { "$ref": "#/$defs/__schema13" }
+      },
+      "required": ["institution", "start"],
+      "additionalProperties": false
+    },
+    "__schema20": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "#/$defs/__schema0" },
+        "items": {
+          "minItems": 1,
+          "maxItems": 50,
+          "type": "array",
+          "items": { "$ref": "#/$defs/__schema0" }
+        },
+        "level": { "$ref": "#/$defs/__schema0" }
+      },
+      "required": ["name", "items"],
+      "additionalProperties": false
+    },
+    "__schema21": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "#/$defs/__schema0" },
+        "issuer": { "$ref": "#/$defs/__schema0" },
+        "date": { "$ref": "#/$defs/__schema15" },
+        "expires": { "$ref": "#/$defs/__schema17" },
+        "credentialId": { "$ref": "#/$defs/__schema0" },
+        "url": { "$ref": "#/$defs/__schema1" },
+        "highlights": { "$ref": "#/$defs/__schema13" }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "__schema22": {
+      "type": "object",
+      "properties": {
+        "title": { "$ref": "#/$defs/__schema0" },
+        "awarder": { "$ref": "#/$defs/__schema0" },
+        "date": { "$ref": "#/$defs/__schema15" },
+        "summary": { "$ref": "#/$defs/__schema12" },
+        "highlights": { "$ref": "#/$defs/__schema13" },
+        "url": { "$ref": "#/$defs/__schema1" }
+      },
+      "required": ["title"],
+      "additionalProperties": false
+    },
+    "__schema23": {
+      "type": "object",
+      "properties": {
+        "organization": { "$ref": "#/$defs/__schema0" },
+        "position": { "$ref": "#/$defs/__schema0" },
+        "location": { "$ref": "#/$defs/__schema0" },
+        "url": { "$ref": "#/$defs/__schema1" },
+        "start": { "$ref": "#/$defs/__schema15" },
+        "end": { "$ref": "#/$defs/__schema16" },
+        "summary": { "$ref": "#/$defs/__schema12" },
+        "highlights": { "$ref": "#/$defs/__schema13" }
+      },
+      "required": ["organization", "start"],
+      "additionalProperties": false
+    },
+    "__schema24": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "#/$defs/__schema0" },
+        "publisher": { "$ref": "#/$defs/__schema0" },
+        "date": { "$ref": "#/$defs/__schema15" },
+        "url": { "$ref": "#/$defs/__schema1" },
+        "authors": { "maxItems": 30, "type": "array", "items": { "$ref": "#/$defs/__schema0" } },
+        "summary": { "$ref": "#/$defs/__schema12" }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "__schema25": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "#/$defs/__schema0" },
+        "fluency": { "$ref": "#/$defs/__schema0" }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "__schema26": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "#/$defs/__schema0" },
+        "keywords": { "maxItems": 30, "type": "array", "items": { "$ref": "#/$defs/__schema0" } }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "__schema27": { "type": "string", "const": "custom" },
+    "__schema28": { "type": "string", "enum": ["stacked", "compact"] },
+    "__schema29": { "$ref": "#/$defs/__schema12" },
+    "__schema30": { "minItems": 1, "type": "array", "items": { "$ref": "#/$defs/__schema31" } },
+    "__schema31": {
+      "type": "object",
+      "properties": {
+        "heading": { "$ref": "#/$defs/__schema32" },
+        "subheading": { "$ref": "#/$defs/__schema33" },
+        "meta": { "$ref": "#/$defs/__schema34" },
+        "text": { "$ref": "#/$defs/__schema35" },
+        "url": { "$ref": "#/$defs/__schema36" },
+        "highlights": { "$ref": "#/$defs/__schema13" }
+      },
+      "additionalProperties": false
+    },
+    "__schema32": { "$ref": "#/$defs/__schema0" },
+    "__schema33": { "$ref": "#/$defs/__schema0" },
+    "__schema34": { "$ref": "#/$defs/__schema0" },
+    "__schema35": { "$ref": "#/$defs/__schema12" },
+    "__schema36": { "$ref": "#/$defs/__schema1" }
+  },
+  "$id": "https://resulogy.dev/schema/resume.schema.json",
+  "title": "Resulogy resume",
+  "description": "A versioned resume document rendered by Resulogy."
+}
